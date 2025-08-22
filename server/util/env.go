@@ -8,9 +8,12 @@ import (
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
-		log.Printf("error loading .env file: %v", err)
+	if os.Getenv("APP_ENV") != "production" {
+		if err := godotenv.Load(); err != nil {
+			log.Print("loading .env file failed")
+		}
 	}
+
 }
 
 func GetEnvString(key, defaultValue string) string {

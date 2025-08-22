@@ -2,7 +2,7 @@ const isLocalhost = window.location.hostname === "localhost";
 
 const API_BASE_URL = isLocalhost
   ? "http://localhost:8100/v1"
-  : "https://owas-server.onrender.com/v1";
+  : "https://myip-server.onrender.com/v1";
     
     
 const ipEl = document.getElementById("ip");
