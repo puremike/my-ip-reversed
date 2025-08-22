@@ -35,7 +35,7 @@ jobs:
     build-push-docker:
         name: Build and Push Docker Images
         needs: server-ci-check
-        runs-on: ubuntu-latests
+        runs-on: ubuntu-latest
         permissions:
             contents: read
             packages: write
