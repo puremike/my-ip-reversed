@@ -1,0 +1,40 @@
+package main
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+type healthChecker struct {
+	Status  string `json:"status"`
+	Message string `json:"message"`
+}
+
+func (app *application) route() http.Handler {
+
+	hC := &healthChecker{
+		Status:  "OK",
+		Message: "Service is running",
+	}
+
+	g := gin.Default()
+	v1 := g.Group("/v1")
+
+	v1.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, hC)
+	})
+
+	v1.GET("/myip", app.ipReversedHandler)
+	return g
+}
+
+func (app *application) server(mux http.Handler) error {
+
+	server := &http.Server{
+		Addr:    ":" + app.AppConfig.PORT,
+		Handler: mux,
+	}
+
+	return server.ListenAndServe()
+}

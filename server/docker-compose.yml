@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres-ip
+    environment:
+      POSTGRES_DB: IP
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword123
+    volumes:
+      - ip-pg-data:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+volumes:
+  ip-pg-data:
+
+
+  
