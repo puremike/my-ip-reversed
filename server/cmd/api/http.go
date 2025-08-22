@@ -11,9 +11,9 @@ import (
 )
 
 type ipResponse struct {
-	ClientIP   string `json:"client_ip"`
-	ReversedIP string `json:"reversed_ip"`
-	Message    string `json:"message"`
+	IP       string `json:"ip"`
+	Reversed string `json:"reversed"`
+	Message  string `json:"message"`
 }
 
 func (app *application) ipReversedHandler(c *gin.Context) {
@@ -39,6 +39,14 @@ func (app *application) ipReversedHandler(c *gin.Context) {
 		return
 	}
 
+	response := &ipResponse{
+		IP:       string(clientIP),
+		Reversed: reverseIP(string(clientIP)),
+		Message:  "IP information retrieved successfully",
+	}
+
+	c.JSON(http.StatusOK, response)
+
 	if err := app.Store.IP.SaveIP(c.Request.Context(), string(clientIP), reverseIP(string(clientIP))); err != nil {
 		log.Printf("ERROR: error saving IP to database: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -46,14 +54,6 @@ func (app *application) ipReversedHandler(c *gin.Context) {
 		})
 		return
 	}
-
-	response := &ipResponse{
-		ClientIP:   string(clientIP),
-		ReversedIP: reverseIP(string(clientIP)),
-		Message:    "IP information retrieved successfully",
-	}
-
-	c.JSON(http.StatusOK, response)
 }
 
 // reverseIP reverses IPv4 and IPv6 addresses
