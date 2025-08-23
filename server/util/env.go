@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	if os.Getenv("APP_ENV") != "production" {
+	if os.Getenv("APP_ENV") == "development" {
 		if err := godotenv.Load(); err != nil {
 			log.Print("loading .env file failed")
 		}
