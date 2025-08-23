@@ -25,7 +25,7 @@ func (app *application) route() http.Handler {
 	g := gin.Default()
 
 	g.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{util.GetEnvString("FRONTEND_URL", "http://localhost:3030")},
+		AllowOrigins:     []string{"http://127.0.0.1:3030", util.GetEnvString("FRONTEND_URL", "http://localhost:3030")},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposeHeaders:    []string{"Content-Length"},
