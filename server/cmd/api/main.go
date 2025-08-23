@@ -24,8 +24,16 @@ type AppConfig struct {
 
 func main() {
 
+	var db_addr string
+
+	if os.Getenv("APP_ENV") != "production" {
+		db_addr = os.Getenv("DB_ADDR")
+	} else {
+		db_addr = db.GetPostgresDSN()
+	}
+
 	cfg := &AppConfig{
-		Db_addr: os.Getenv("DB_ADDR"),
+		Db_addr: db_addr,
 		PORT:    util.GetEnvString("PORT", PORT),
 	}
 

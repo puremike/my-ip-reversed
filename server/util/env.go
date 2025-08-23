@@ -13,7 +13,6 @@ func init() {
 			log.Print("loading .env file failed")
 		}
 	}
-
 }
 
 func GetEnvString(key, defaultValue string) string {
