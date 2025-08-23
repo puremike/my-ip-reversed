@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strings"
 
 	_ "github.com/lib/pq"
 	"github.com/puremike/ip_reversed/internal/db"
@@ -26,7 +27,8 @@ func main() {
 
 	var db_addr string
 
-	if os.Getenv("APP_ENV") != "production" {
+	env := strings.TrimSpace(os.Getenv("APP_ENV"))
+	if env == "development" {
 		db_addr = os.Getenv("DB_ADDR")
 	} else {
 		db_addr = db.GetPostgresDSN()
