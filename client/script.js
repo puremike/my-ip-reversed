@@ -1,5 +1,5 @@
 const isLocal = window.location.hostname === "localhost";
-const API_BASE_URL = isLocal ? "http://localhost:8100/v1" : "http://ip-client:8100/v1";
+const API_BASE_URL = isLocal ? "http://localhost:8100/v1" : "http://my-ip-server:8100/v1";
 
 const ipEl = document.getElementById("ip");
 const revEl = document.getElementById("reversed");
