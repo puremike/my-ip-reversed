@@ -1,5 +1,6 @@
 const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const API_BASE_URL = isLocal ? "http://127.0.0.1:8100/v1" : "http://af50de61593d644f093ec88175196089-775938322.us-east-1.elb.amazonaws.com/v1";
+// const API_BASE_URL = isLocal ? "http://127.0.0.1:8100/v1" : "http://af50de61593d644f093ec88175196089-775938322.us-east-1.elb.amazonaws.com/v1";
+const API_BASE_URL = isLocal ? "http://127.0.0.1:8100/v1" : "https://my-ip-reversed.onrender.com/v1";
 
 const ipEl = document.getElementById("ip");
 const revEl = document.getElementById("reversed");

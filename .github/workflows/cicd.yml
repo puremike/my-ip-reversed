@@ -65,6 +65,6 @@ jobs:
               with:
                   context: ./client
                   push: true
-                  tags: ${{ secrets.DOCKER_USERNAME }}/my-ip-client:latest,${{ secrets.DOCKER_USERNAME }}/my-ip-client:1.9
+                  tags: ${{ secrets.DOCKER_USERNAME }}/my-ip-client:latest,${{ secrets.DOCKER_USERNAME }}/my-ip-client:2.0
                   file: ./client/Dockerfile
 
