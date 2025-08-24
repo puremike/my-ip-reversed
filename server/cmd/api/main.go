@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"os"
-	"strings"
 
 	_ "github.com/lib/pq"
 	"github.com/puremike/ip_reversed/internal/db"
@@ -25,17 +24,8 @@ type AppConfig struct {
 
 func main() {
 
-	var db_addr string
-
-	env := strings.TrimSpace(os.Getenv("APP_ENV"))
-	if env == "development" {
-		db_addr = os.Getenv("DB_ADDR")
-	} else {
-		db_addr = db.GetPostgresDSN()
-	}
-
 	cfg := &AppConfig{
-		Db_addr: db_addr,
+		Db_addr: os.Getenv("DB_ADDR"),
 		PORT:    util.GetEnvString("PORT", PORT),
 	}
 
