@@ -72,6 +72,34 @@
   button:active { transform: translateY(1px); }
   .hidden { display: none; }
   .error { color: #b91c1c; }
+
+  @media (max-width: 600px) {
+  .card {
+    padding: 24px 16px; /* smaller padding on mobile */
+  }
+  .row {
+    grid-template-columns: 1fr; /* stack label & value */
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .label {
+    font-size: 14px;
+  }
+  .value {
+    font-size: 18px;
+    padding: 10px 12px;
+  }
+  button {
+    width: 100%; /* make refresh button full width */
+    padding: 12px;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+  }
+}
+
 </style>
 </head>
 <body>
