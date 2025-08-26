@@ -36,8 +36,6 @@ func (app *application) route() http.Handler {
 		}
 	}
 
-	g.SetTrustedProxies([]string{"192.168.58.0/24"})
-
 	g.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://127.0.0.1:3030", util.GetEnvString("FRONTEND_URL", "http://localhost:3030")},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE", "OPTIONS"},
