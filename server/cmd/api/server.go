@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -23,6 +25,18 @@ func (app *application) route() http.Handler {
 	}
 
 	g := gin.Default()
+	trustedProxies := os.Getenv("TRUSTED_PROXIES")
+	if trustedProxies != "" {
+		proxies := strings.Split(trustedProxies, ",")
+		for i := range proxies {
+			proxies[i] = strings.TrimSpace(proxies[i])
+		}
+		if err := g.SetTrustedProxies(proxies); err != nil {
+			panic(err)
+		}
+	}
+
+	g.SetTrustedProxies([]string{"192.168.58.0/24"})
 
 	g.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://127.0.0.1:3030", util.GetEnvString("FRONTEND_URL", "http://localhost:3030")},
