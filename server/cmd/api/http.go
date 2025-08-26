@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net"
 	"net/http"
@@ -18,26 +17,7 @@ type ipResponse struct {
 
 func (app *application) ipReversedHandler(c *gin.Context) {
 
-	// clientIP := c.ClientIP()
-
-	res, err := http.Get("https://api64.ipify.org")
-	if err != nil {
-		log.Printf("ERROR: error fetching IP: %v", err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-	defer res.Body.Close()
-
-	clientIP, err := io.ReadAll(res.Body)
-	if err != nil {
-		log.Printf("ERROR: error reading response body: %v", err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
+	clientIP := c.ClientIP()
 
 	response := &ipResponse{
 		IP:       string(clientIP),
