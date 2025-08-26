@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -16,6 +17,10 @@ type ipResponse struct {
 }
 
 func (app *application) ipReversedHandler(c *gin.Context) {
+
+	for k, v := range c.Request.Header {
+		fmt.Printf("Header: %s = %v\n", k, v)
+	}
 
 	clientIP := c.ClientIP()
 
