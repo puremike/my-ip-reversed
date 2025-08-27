@@ -10,7 +10,7 @@ import (
 	"github.com/puremike/ip_reversed/util"
 )
 
-const PORT = ":8180"
+const PORT = "8180"
 
 type application struct {
 	AppConfig *AppConfig
